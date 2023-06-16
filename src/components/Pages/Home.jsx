@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Categories from '../Categories';
 import PizzaBlock from '../PizzaBlock';
 import Skeleton from '../PizzaBlock/Skeleton';
 import Sort from '../Sort';
 import Pagination from '../Pagination';
+import { SearchContext } from '../../App';
 
-const Home = ({ searchValue }) => {
+const Home = () => {
+    const { searchValue } = useContext(SearchContext);
+
     const [pizzas, setPizzas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [categoryId, setCategoryId] = useState(0);
@@ -44,7 +47,7 @@ const Home = ({ searchValue }) => {
                     ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
                     : pizzas.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} image={pizza.imageUrl} />)}
             </div>
-            <Pagination handlePage={(numb) => setCurrentPage(numb)}/>
+            <Pagination handlePage={(numb) => setCurrentPage(numb)} />
         </div>
     )
 }
