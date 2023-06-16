@@ -1,42 +1,72 @@
 [
-    {
-        "id": 0,
-        "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
-        "name": "Чизбургер-пицца",
-        "types": [0, 1],
-        "sizes": [26, 30, 40],
-        "price": 395,
-        "category": 2,
-        "rating": 4
-    },
-    {
-        "id": 1,
-        "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/9cf62eab14b64d6a8ce0a9f5710f4f76_292x292.webp",
-        "name": "Песто",
-        "types": [0, 1],
-        "sizes": [26, 40],
-        "price": 500,
-        "category": 2,
-        "rating": 4
-    },
-    {
-        "id": 2,
-        "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/22eead365d6a451eb0e398a6bab07823_292x292.webp",
-        "name": "Пепперони",
-        "types": [0, 1],
-        "sizes": [26, 30, 40],
-        "price": 600,
-        "category": 1,
-        "rating": 4
-    },
-    {
-        "id": 3,
-        "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/ebbfdf6f8fa74935af77b784a1ff2e1d_292x292.webp",
-        "name": "Аррива",
-        "types": [0, 1],
-        "sizes": [26, 40],
-        "price": 445,
-        "category": 4,
-        "rating": 4
-    }
+  {
+    "id": 0,
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+    "name": "Чизбургер-пицца",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 395,
+    "category": 2,
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/9cf62eab14b64d6a8ce0a9f5710f4f76_292x292.webp",
+    "name": "Песто",
+    "types": [0, 1],
+    "sizes": [26, 40],
+    "price": 500,
+    "category": 2,
+    "rating": 10
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/22eead365d6a451eb0e398a6bab07823_292x292.webp",
+    "name": "Пепперони",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 600,
+    "category": 1,
+    "rating": 8
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/ebbfdf6f8fa74935af77b784a1ff2e1d_292x292.webp",
+    "name": "Аррива",
+    "types": [0, 1],
+    "sizes": [26, 40],
+    "price": 445,
+    "category": 4,
+    "rating": 6
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/a5fbe87430b943b7833e632e94807355_292x292.webp",
+    "name": "Азиатская",
+    "types": [0, 1],
+    "sizes": [26, 40],
+    "price": 445,
+    "category": 3,
+    "rating": 7
+  },
+  {
+    "id": 5,
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/4f760d108a3f47fea43520d234157ac2_292x292.webp",
+    "name": "Жгучая пепперони",
+    "types": [0, 1],
+    "sizes": [26, 40],
+    "price": 445,
+    "category": 4,
+    "rating": 2
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/e52ac1ae0a30407487fe385eddd1811d_292x292.webp",
+    "name": "Супермясная",
+    "types": [0, 1],
+    "sizes": [26, 40],
+    "price": 475,
+    "category": 1,
+    "rating": 8
+  }
 ]
