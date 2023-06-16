@@ -15,14 +15,20 @@ const Home = ({searchValue}) => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(`https://648b18e717f1536d65ea596a.mockapi.io/items?${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${selected.sortProperty.replace('-', '')}&order=${selected.sortProperty.includes('-') ? 'desc' : 'asc'}`)
+
+        const category = categoryId > 0 ? `category=${categoryId}` : '';
+        const sortBy = selected.sortProperty.replace('-', '');
+        const order = selected.sortProperty.includes('-') ? 'desc' : 'asc';
+        const search = searchValue ? searchValue : ''
+
+        fetch(`https://648b18e717f1536d65ea596a.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}&search=${search}`)
             .then(res => res.json())
             .then(arr => {
                 setPizzas(arr)
                 setIsLoading(false)
             })
         window.scrollTo(0, 0)
-    }, [categoryId, selected])
+    }, [categoryId, selected, searchValue])
 
     return (
         <div className='container'>
@@ -34,10 +40,7 @@ const Home = ({searchValue}) => {
             <div className="content__items">
                 {isLoading
                     ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
-                    : pizzas.filter((pizza) => {
-                        if(pizza.name.toLowerCase().includes(searchValue.toLowerCase())) return true
-                        else return false
-                    }).map((pizza) => <PizzaBlock key={pizza.id} {...pizza} image={pizza.imageUrl} />)}
+                    : pizzas.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} image={pizza.imageUrl} />)}
             </div>
         </div>
     )
