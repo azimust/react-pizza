@@ -1,19 +1,24 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSort } from '../redux/slices/filterSlice';
 
-const Sort = ({selected, handleSelected}) => {
+const Sort = () => {
+    const dispatch = useDispatch();
+    const sort = useSelector(state => state.filter.sort)
+
     const sortList = [
-        {name: 'популярности (ASC)', sortProperty: 'rating'},
-        {name: 'популярности (DESC)', sortProperty: '-rating'},
-        {name: 'цене (ASC)', sortProperty: 'price'},
-        {name: 'цене (DESC)', sortProperty: '-price'},
-        {name: 'алфавиту (А-Я)', sortProperty: 'name'},
-        {name: 'алфавиту (Я-А)', sortProperty: '-name'},
+        { name: 'популярности (ASC)', sortProperty: 'rating' },
+        { name: 'популярности (DESC)', sortProperty: '-rating' },
+        { name: 'цене (ASC)', sortProperty: 'price' },
+        { name: 'цене (DESC)', sortProperty: '-price' },
+        { name: 'алфавиту (А-Я)', sortProperty: 'name' },
+        { name: 'алфавиту (Я-А)', sortProperty: '-name' },
     ]
 
     const [open, setOpen] = useState(false);
 
     const handleActiveItems = (i) => {
-        handleSelected(i);
+        dispatch(setSort(i));
         setOpen(false)
     }
 
@@ -33,7 +38,7 @@ const Sort = ({selected, handleSelected}) => {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={() => setOpen(!open)}>{selected.name}</span>
+                <span onClick={() => setOpen(!open)}>{sort.name}</span>
             </div>
             {open && (
                 <div className="sort__popup">
@@ -41,7 +46,7 @@ const Sort = ({selected, handleSelected}) => {
                         {sortList.map((list, i) => {
                             return (
                                 <li key={i}
-                                    className={selected.sortProperty === list.sortProperty ? "active" : ''}
+                                    className={sort.sortProperty === list.sortProperty ? "active" : ''}
                                     onClick={() => handleActiveItems(list)}
                                 >{list.name}</li>
                             )
