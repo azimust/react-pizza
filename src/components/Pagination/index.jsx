@@ -10,7 +10,7 @@ const Pagination = ({handlePage}) => {
             nextLabel=">"
             onPageChange={event => handlePage(event.selected + 1)}
             pageRangeDisplayed={4}
-            pageCount={3}
+            pageCount={4}
             previousLabel="<"
             renderOnZeroPageCount={null}
         />
