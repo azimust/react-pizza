@@ -3,6 +3,6 @@ import fiterReducer from './slices/filterSlice'
 
 export const store = configureStore({
     reducer: {
-        filter: fiterReducer
+        filter: fiterReducer,
     }
 })
