@@ -7,11 +7,12 @@ import Pagination from '../Pagination';
 import { SearchContext } from '../../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId, setSort } from '../../redux/slices/filterSlice';
+import axios from 'axios';
 
 const Home = () => {
     const dispatch = useDispatch();
 
-    const {sort, categoryId} = useSelector(state => state.filter)
+    const { sort, categoryId } = useSelector(state => state.filter)
 
     const { searchValue } = useContext(SearchContext);
 
@@ -28,10 +29,9 @@ const Home = () => {
         const order = sort.sortProperty.includes('-') ? 'desc' : 'asc';
         const search = searchValue ? searchValue : '';
 
-        fetch(`https://648b18e717f1536d65ea596a.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}&search=${search}`)
-            .then(res => res.json())
-            .then(arr => {
-                setPizzas(arr)
+        axios.get(`https://648b18e717f1536d65ea596a.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}&search=${search}`)
+            .then(res => {
+                setPizzas(res.data)
                 setIsLoading(false)
             })
         window.scrollTo(0, 0)
