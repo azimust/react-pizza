@@ -53,7 +53,7 @@ const Home = () => {
                     ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
                     : pizzas.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} image={pizza.imageUrl} />)}
             </div>
-            <Pagination handlePage={handlePage} />
+            <Pagination page={page} handlePage={handlePage} />
         </div>
     )
 }
