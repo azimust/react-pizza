@@ -7,7 +7,6 @@ import Pagination from '../Pagination';
 import { SearchContext } from '../../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId, setCurrentPage, setFilters } from '../../redux/slices/filterSlice';
-import axios from 'axios';
 import qs from 'qs'
 import { useNavigate } from 'react-router-dom';
 import { fetchPizzas, setItems } from '../../redux/slices/pizzaSlice';
@@ -15,14 +14,10 @@ import { fetchPizzas, setItems } from '../../redux/slices/pizzaSlice';
 const Home = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const isSearch = useRef(false)
     const isMounted = useRef(false)
 
-    const { sort, categoryId, page } = useSelector(state => state.filter)
+    const { sort, categoryId, page, searchValue } = useSelector(state => state.filter)
     const { items, status } = useSelector(state => state.pizza)
-
-    const { searchValue } = useContext(SearchContext);
 
     const handleCategory = useCallback((idx) => {
         dispatch(setCategoryId(idx))
@@ -66,7 +61,9 @@ const Home = () => {
 
             navigate(`/?${queryString}`)
         }
-        isMounted.current = true
+        if (!window.location.search) {
+            fetchPizzas()
+        }
     }, [categoryId, sort.sortProperty, page, searchValue])
 
     useEffect(() => {
@@ -74,13 +71,16 @@ const Home = () => {
     }, [categoryId, sort.sortProperty, page, searchValue])
 
     useEffect(() => {
-        window.scrollTo(0, 0)
-
-        if (!isSearch.current) {
-            getPizzas()
-        }
-        isSearch.current = false
-    }, [categoryId, sort.sortProperty, searchValue, page])
+        if (window.location.search) {
+            const params = qs.parse(window.location.search.substring(1));
+            const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty);
+            if (sort) {
+              params.sort = sort;
+            }
+            dispatch(setFilters(params));
+          }
+          isMounted.current = true;
+    }, [])
 
     return (
         <div className='container'>
