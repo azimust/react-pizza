@@ -5,6 +5,7 @@ import Home from './components/Pages/Home';
 import NotFound from './components/Pages/NotFound';
 import Cart from './components/Pages/Cart';
 import { createContext, useState } from 'react';
+import FullPizza from './components/FullPizza';
 
 export const SearchContext = createContext()
 
@@ -15,6 +16,7 @@ function App() {
       <div className="content">
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/pizza/:id' element={<FullPizza />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='*' element={<NotFound />} />
         </Routes>

@@ -8,7 +8,7 @@ import { SearchContext } from '../../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId, setCurrentPage, setFilters } from '../../redux/slices/filterSlice';
 import qs from 'qs'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchPizzas, setItems } from '../../redux/slices/pizzaSlice';
 
 const Home = () => {
@@ -75,11 +75,11 @@ const Home = () => {
             const params = qs.parse(window.location.search.substring(1));
             const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty);
             if (sort) {
-              params.sort = sort;
+                params.sort = sort;
             }
             dispatch(setFilters(params));
-          }
-          isMounted.current = true;
+        }
+        isMounted.current = true;
     }, [])
 
     return (
@@ -98,7 +98,7 @@ const Home = () => {
                 <div className="content__items">
                     {status === 'loading'
                         ? [...new Array(4)].map((_, i) => <Skeleton key={i} />)
-                        : items.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} image={pizza.imageUrl} />)
+                        : items.map((pizza) => <Link key={pizza.id} to={`pizza/${pizza.id}`}><PizzaBlock {...pizza} image={pizza.imageUrl} /></Link>)
                     }
                 </div>
             )}
