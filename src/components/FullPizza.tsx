@@ -4,8 +4,14 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
+interface IPizzas {
+    imageUrl: string,
+    name: string,
+    price: string
+}
+
 const FullPizza = () => {
-    const [pizza, setPizza] = useState()
+    const [pizza, setPizza] = useState<IPizzas>()
     const { id } = useParams()
     const navigate = useNavigate()
 
@@ -22,8 +28,8 @@ const FullPizza = () => {
         fetchPizza()
     }, [])
 
-    if(!pizza) {
-        return 'Загрузка...'
+    if (!pizza) {
+        return <>'Загрузка...'</>
     }
 
     return (

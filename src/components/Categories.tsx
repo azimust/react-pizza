@@ -1,5 +1,3 @@
-import React from 'react'
-
 const categories = [
     { id: 0, title: 'Все' },
     { id: 1, title: 'Мясные' },
@@ -9,12 +7,17 @@ const categories = [
     { id: 5, title: 'Закрытые' },
 ]
 
-const Categories = ({ categoryId, handleCategory }) => {
+interface ICategoryProps {
+    categoryId: number,
+    handleCategory: (id: number) => void
+}
+
+const Categories = ({ categoryId, handleCategory }: ICategoryProps) => {
     return (
         <div className="categories">
             <ul>
                 {categories.map((v) => {
-                    return <li key={v.id} onClick={() => handleCategory(v.id)} className={categoryId === v.id ? "active" : 0}>{v.title}</li>
+                    return <li key={v.id} onClick={() => handleCategory(v.id)} className={categoryId === v.id ? "active" : ''}>{v.title}</li>
                 })}
             </ul>
         </div>
