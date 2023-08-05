@@ -2,7 +2,17 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice';
 
-const CartItem = ({ id, count, name, type, image, price, size }) => {
+interface ICartItemProps {
+    id: number,
+    count: number,
+    name: string,
+    type: string,
+    image: string,
+    price: number,
+    size: number
+}
+
+const CartItem = ({ id, count, name, type, image, price, size }: ICartItemProps) => {
     const dispatch = useDispatch();
 
     const handlePlus = () => {

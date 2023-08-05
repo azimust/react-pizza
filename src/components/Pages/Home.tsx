@@ -4,7 +4,6 @@ import PizzaBlock from '../PizzaBlock';
 import Skeleton from '../PizzaBlock/Skeleton';
 import Sort, { sortList } from '../Sort';
 import Pagination from '../Pagination';
-import { SearchContext } from '../../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId, setCurrentPage, setFilters } from '../../redux/slices/filterSlice';
 import qs from 'qs'
@@ -23,7 +22,7 @@ const Home = () => {
         dispatch(setCategoryId(idx))
     }, [])
 
-    const handlePage = page => {
+    const handlePage = (page: number) => {
         dispatch(setCurrentPage(page))
     }
 

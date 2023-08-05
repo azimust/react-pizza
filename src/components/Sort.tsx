@@ -16,20 +16,20 @@ const Sort = () => {
     const sort = useSelector(state => state.filter.sort)
 
     const [open, setOpen] = useState(false);
-    const sortRef = useRef();
+    const sortRef = useRef<HTMLDivElement>(null);
 
-    const handleActiveItems = (i) => {
+    const handleActiveItems = (i: number) => {
         dispatch(setSort(i));
         setOpen(false)
     }
 
     useEffect(() => {
-        const setHidePopup = (event) => {
-            if(!event.composedPath().includes(sortRef.current)) {
+        const setHidePopup = (event: Event) => {
+            if (!event.composedPath().includes(sortRef.current)) {
                 setOpen(false)
             }
         }
-        
+
         document.body.addEventListener('click', setHidePopup)
         return () => document.body.removeEventListener('click', setHidePopup)
     }, [])
