@@ -1,8 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { ReactEventHandler, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSort } from '../redux/slices/filterSlice';
 
-export const sortList = [
+interface ISortList {
+    name: string,
+    sortProperty: string
+}
+
+export const sortList: ISortList[] = [
     { name: 'популярности (ASC)', sortProperty: 'rating' },
     { name: 'популярности (DESC)', sortProperty: '-rating' },
     { name: 'цене (ASC)', sortProperty: 'price' },
@@ -18,13 +23,13 @@ const Sort = () => {
     const [open, setOpen] = useState(false);
     const sortRef = useRef<HTMLDivElement>(null);
 
-    const handleActiveItems = (i: number) => {
+    const handleActiveItems = (i: ISortList) => {
         dispatch(setSort(i));
         setOpen(false)
     }
 
     useEffect(() => {
-        const setHidePopup = (event: Event) => {
+        const setHidePopup = (event: any) => {
             if (!event.composedPath().includes(sortRef.current)) {
                 setOpen(false)
             }

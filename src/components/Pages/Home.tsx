@@ -18,7 +18,7 @@ const Home = () => {
     const { sort, categoryId, page, searchValue } = useSelector(state => state.filter)
     const { items, status } = useSelector(state => state.pizza)
 
-    const handleCategory = useCallback((idx) => {
+    const handleCategory = useCallback((idx: number) => {
         dispatch(setCategoryId(idx))
     }, [])
 

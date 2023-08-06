@@ -9,7 +9,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { totalSum, items } = useSelector(state => state.cart)
 
-  const totalCount = items.reduce((sum, item) => sum + item.count, 0)
+  const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0)
 
   if (!totalSum) {
     return <CartEmpty />
