@@ -16,6 +16,12 @@ export const sortList: ISortList[] = [
     { name: 'алфавиту (Я-А)', sortProperty: '-name' },
 ]
 
+type PopupClick = MouseEvent & {
+    composedPath: () => [] & {
+        includes: (item: HTMLDivElement) => []
+    }
+}
+
 const Sort = () => {
     const dispatch = useDispatch();
     const sort = useSelector(state => state.filter.sort)
@@ -29,8 +35,10 @@ const Sort = () => {
     }
 
     useEffect(() => {
-        const setHidePopup = (event: any) => {
-            if (!event.composedPath().includes(sortRef.current)) {
+        const setHidePopup = (event: MouseEvent) => {
+            const _event = event as PopupClick
+
+            if (sortRef.current && !_event.composedPath().includes(sortRef.current)) {
                 setOpen(false)
             }
         }

@@ -4,7 +4,7 @@ import styles from './Pagination.module.scss'
 
 interface IPagination {
     page: number,
-    handlePage: (selectedPage: number) => number
+    handlePage: (selectedPage: number) => void
 }
 
 const Pagination = ({ page, handlePage }: IPagination) => {

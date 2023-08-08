@@ -37,7 +37,7 @@ const Cart = () => {
           </div>
         </div>
         <div className="content__items">
-          {items.map((item) => {
+          {items.map((item: any) => {
             return <CartItem key={item.id} {...item} />
           })}
         </div>
