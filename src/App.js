@@ -4,7 +4,10 @@ import './scss/app.scss';
 import Home from './components/Pages/Home';
 import NotFound from './components/Pages/NotFound';
 import Cart from './components/Pages/Cart';
+import { createContext, useState } from 'react';
 import FullPizza from './components/FullPizza';
+
+export const SearchContext = createContext()
 
 function App() {
   return (

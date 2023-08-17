@@ -1,18 +1,8 @@
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice';
-import { Link } from 'react-router-dom';
 
-interface ICartItemProps {
-    id: number,
-    count: number,
-    name: string,
-    type: string,
-    image: string,
-    price: number,
-    size: number
-}
-
-const CartItem = ({ id, count, name, type, image, price, size }: ICartItemProps) => {
+const CartItem = ({ id, count, name, type, image, price, size }) => {
     const dispatch = useDispatch();
 
     const handlePlus = () => {
@@ -26,18 +16,16 @@ const CartItem = ({ id, count, name, type, image, price, size }: ICartItemProps)
         dispatch(minusItem(id))
     }
     const handleRemove = () => {
-        if (window.confirm('Вы действительно хотите удалить товар?')) {
+        if(window.confirm('Вы действительно хотите удалить товар?')) {
             dispatch(removeItem(id))
         }
     }
 
     return (
         <div className="cart__item">
-            <Link key={id} to={`pizza/${id}`}>
-                <div className="cart__item-img">
-                    <img className="pizza-block__image" src={image} alt="Pizza" />
-                </div>
-            </Link>
+            <div className="cart__item-img">
+                <img className="pizza-block__image" src={image} alt="Pizza" />
+            </div>
             <div className="cart__item-info">
                 <h3>{name}</h3>
                 <p>{type}, {size} см.</p>

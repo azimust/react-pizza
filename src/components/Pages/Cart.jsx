@@ -7,11 +7,11 @@ import CartEmpty from './CartEmpty';
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { totalSum, items } = useSelector(state => state.cart)
+  const {totalSum, items} = useSelector(state => state.cart)
 
-  const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0)
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0)
 
-  if (!totalSum) {
+  if(!totalSum) {
     return <CartEmpty />
   }
 
@@ -37,8 +37,8 @@ const Cart = () => {
           </div>
         </div>
         <div className="content__items">
-          {items.map((item: any) => {
-            return <CartItem key={item.id} {...item} />
+          {items.map((item) => {
+            return <CartItem key={item.id} {...item}/>
           })}
         </div>
         <div className="cart__bottom">
@@ -52,7 +52,7 @@ const Cart = () => {
                 <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
               </svg>
 
-              <span>Вернуться назад</span>
+              <span to='/'>Вернуться назад</span>
             </Link>
             <div className="button pay-btn">
               <span>Оплатить сейчас</span>

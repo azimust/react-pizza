@@ -2,12 +2,7 @@ import React from 'react'
 import ReactPaginate from 'react-paginate'
 import styles from './Pagination.module.scss'
 
-interface IPagination {
-    page: number,
-    handlePage: (selectedPage: number) => void
-}
-
-const Pagination = ({ page, handlePage }: IPagination) => {
+const Pagination = ({ page, handlePage }) => {
     return (
         <ReactPaginate
             className={styles.root}

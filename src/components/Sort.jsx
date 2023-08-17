@@ -1,13 +1,8 @@
-import React, { ReactEventHandler, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSort } from '../redux/slices/filterSlice';
 
-interface ISortList {
-    name: string,
-    sortProperty: string
-}
-
-export const sortList: ISortList[] = [
+export const sortList = [
     { name: 'популярности (ASC)', sortProperty: 'rating' },
     { name: 'популярности (DESC)', sortProperty: '-rating' },
     { name: 'цене (ASC)', sortProperty: 'price' },
@@ -16,33 +11,25 @@ export const sortList: ISortList[] = [
     { name: 'алфавиту (Я-А)', sortProperty: '-name' },
 ]
 
-type PopupClick = MouseEvent & {
-    composedPath: () => [] & {
-        includes: (item: HTMLDivElement) => []
-    }
-}
-
 const Sort = () => {
     const dispatch = useDispatch();
     const sort = useSelector(state => state.filter.sort)
 
     const [open, setOpen] = useState(false);
-    const sortRef = useRef<HTMLDivElement>(null);
+    const sortRef = useRef();
 
-    const handleActiveItems = (i: ISortList) => {
+    const handleActiveItems = (i) => {
         dispatch(setSort(i));
         setOpen(false)
     }
 
     useEffect(() => {
-        const setHidePopup = (event: MouseEvent) => {
-            const _event = event as PopupClick
-
-            if (sortRef.current && !_event.composedPath().includes(sortRef.current)) {
+        const setHidePopup = (event) => {
+            if(!event.composedPath().includes(sortRef.current)) {
                 setOpen(false)
             }
         }
-
+        
         document.body.addEventListener('click', setHidePopup)
         return () => document.body.removeEventListener('click', setHidePopup)
     }, [])
