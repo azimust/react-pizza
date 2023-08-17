@@ -97,7 +97,7 @@ const Home = () => {
                 <div className="content__items">
                     {status === 'loading'
                         ? [...new Array(4)].map((_, i) => <Skeleton key={i} />)
-                        : items.map((pizza: any) => <Link key={pizza.id} to={`pizza/${pizza.id}`}><PizzaBlock {...pizza} image={pizza.imageUrl} /></Link>)
+                        : items.map((pizza: any) => <PizzaBlock {...pizza} image={pizza.imageUrl} />)
                     }
                 </div>
             )}
