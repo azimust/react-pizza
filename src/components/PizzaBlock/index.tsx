@@ -26,7 +26,8 @@ const PizzaBlock = ({ image, name, price, id, sizes, types }: IPizzaBlockProps) 
             price,
             id,
             size: sizes[activeSize],
-            type: typePizza[activeType]
+            type: typePizza[activeType],
+            count: 0
         }
         dispatch(addItem(item))
     }

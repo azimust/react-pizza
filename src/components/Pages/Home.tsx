@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId, setCurrentPage } from '../../redux/slices/filterSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchPizzas } from '../../redux/slices/pizzaSlice';
+import { useAppDispatch } from '../../redux/store';
 
 const Home = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const isMounted = useRef(false)
 
     const { sort, categoryId, page, searchValue } = useSelector(state => state.filter)
@@ -33,7 +34,6 @@ const Home = () => {
 
         try {
             dispatch(
-                //@ts-ignore
                 fetchPizzas({
                     category,
                     sortBy,
@@ -48,22 +48,22 @@ const Home = () => {
         }
     }
 
-    // useEffect(() => {
-    //     if (isMounted.current) {
-    //         const params = {
-    //             categoryId: categoryId > 0 ? categoryId : null,
-    //             sortProperty: sort.sortProperty,
-    //             page
-    //         }
+    useEffect(() => {
+        if (isMounted.current) {
+            const params = {
+                categoryId: categoryId > 0 ? categoryId : null,
+                sortProperty: sort.sortProperty,
+                page
+            }
 
-    //         const queryString = qs.stringify(params, { skipNulls: true })
+            const queryString = qs.stringify(params, { skipNulls: true })
 
-    //         navigate(`/?${queryString}`)
-    //     }
-    //     if (!window.location.search) {
-    //         fetchPizzas()
-    //     }
-    // }, [categoryId, sort.sortProperty, page, searchValue])
+            navigate(`/?${queryString}`)
+        }
+        if (!window.location.search) {
+            dispatch(fetchPizzas({}))
+        }
+    }, [categoryId, sort.sortProperty, page, searchValue])
 
     useEffect(() => {
         getPizzas()
